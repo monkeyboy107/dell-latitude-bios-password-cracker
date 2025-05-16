@@ -13,27 +13,27 @@ def next(password, pos=0):
     password[pos] = chars[index +1]
   return password
 
-minimum_password_length = 8
-maximum_password_length = 100
 
-chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+if __name__ == '__main__':
+  minimum_password_length = 8
+  maximum_password_length = 100
 
-password = []
-password_list = []
+  chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
+  password = []
 
+  while len(password) < minimum_password_length:
+    password.append(chars[0])
 
-while len(password) < minimum_password_length:
-  password.append(chars[0])
+  while len(password) < maximum_password_length:
+    print(password)
+    with open('/run/media/kerley/fe92baef-4469-422b-8381-f6faca642dec/rainbows.yaml', 'a') as stream:
+      stream.write(f'- {"".join(password)}\n') 
+    password = next(password)
 
-while len(password) < maximum_password_length:
-  print(password)
-  password_list.append(''.join(password))
-  password = next(password)
-
-# for i in range(3845):
-#   print(password)
-#   password = next(password)
-
-# char_length = len(chars)
-# print(char_length**minimum_password_length)
+  # for i in range(3845):
+  #   print(password)
+  #   password = next(password)
+  
+  # char_length = len(chars)
+  # print(char_length**minimum_password_length)
