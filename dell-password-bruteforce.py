@@ -30,20 +30,19 @@ if __name__ == '__main__':
   while len(password) < minimum_password_length:
     password.append(chars[0])
 
-  cmd = ['cctk.exe', '--setuppwd=""', '--valsetuppwd=""'] 
+  cmd = ['cctk.exe', '--setuppwd=""', '--valsetuppwd=""']
   result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   
   while len(password) < maximum_password_length or result.returncode == 0:
     cmd[1] = f'--setuppwd={"".join(password)}'
     result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    print(password, result)
+    print(password, result.stdout.decode('utf-8'), cmd)
     password = next(password)
 
   os.chdir(cwd)
-  
   with open('output.txt', a) as stream:
     stream.write(password)
-  print(password)
+  print(''.join(password))
 
   # for i in range(3845):
   #   print(password)
@@ -51,3 +50,4 @@ if __name__ == '__main__':
   
   # char_length = len(chars)
   # print(char_length**minimum_password_length)
+
