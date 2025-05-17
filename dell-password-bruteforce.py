@@ -33,7 +33,7 @@ if __name__ == '__main__':
   while len(password) < maximum_password_length or result.returncode == 0:
     cmd[1] = f'--setuppassword={"".join(password)}'
     result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    print(password)
+    print(password, result)
     password = next(password)
 
   with open('output.txt', a) as stream:
