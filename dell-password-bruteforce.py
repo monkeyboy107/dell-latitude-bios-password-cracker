@@ -1,4 +1,5 @@
 import subprocess
+import os
 
 def next(password, pos=0):
   index = chars.index(password[pos])
@@ -17,6 +18,8 @@ def next(password, pos=0):
 
 
 if __name__ == '__main__':
+  cwd = os.getcwd()
+  os.chdir('C:\\Program Files (x86)\\Dell\\CCTK\\X86_64\\')
   minimum_password_length = 8
   maximum_password_length = 100
 
@@ -27,11 +30,11 @@ if __name__ == '__main__':
   while len(password) < minimum_password_length:
     password.append(chars[0])
 
-  cmd = ['C:\\Progam Files (x86)\\Dell\\CCTK\\X86_64\\cctk.exe', '--setuppwd=""', '--vaultsetuppwd=""'] 
+  cmd = ['C:\\Progam Files (x86)\\Dell\\CCTK\\X86_64\\cctk.exe', '--setuppwd=""', '--valsetuppwd=""'] 
   result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   
   while len(password) < maximum_password_length or result.returncode == 0:
-    cmd[1] = f'--setuppwdd={"".join(password)}'
+    cmd[1] = f'--setuppwd={"".join(password)}'
     result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     print(password, result)
     password = next(password)
