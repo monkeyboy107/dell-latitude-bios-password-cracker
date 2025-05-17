@@ -1,3 +1,5 @@
+import subprocess
+
 def next(password, pos=0):
   index = chars.index(password[pos])
   if chars[-1] == chars[index]:
@@ -25,10 +27,11 @@ if __name__ == '__main__':
   while len(password) < minimum_password_length:
     password.append(chars[0])
 
-  while len(password) < maximum_password_length:
+  result = subprocess.run(['C:\\Progam Files (x86)\\Dell\CCTK\\X86_64\\cctk.exe', '--setuppassword=""', f'--vaultsetuppwd=""', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE])
+  
+  while len(password) < maximum_password_length or result.returncode == 0:
+    result = subprocess.run(['C:\\Progam Files (x86)\\Dell\CCTK\\X86_64\\cctk.exe', '--setuppassword=""', f'--vaultsetuppwd=""', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE])
     print(password)
-    with open('/run/media/kerley/fe92baef-4469-422b-8381-f6faca642dec/rainbows.yaml', 'a') as stream:
-      stream.write(f'- {"".join(password)}\n') 
     password = next(password)
 
   # for i in range(3845):
