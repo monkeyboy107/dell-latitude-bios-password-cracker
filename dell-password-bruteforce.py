@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
   os.chdir(cwd)
   with open('output.txt', 'a') as stream:
-    stream.write(password)
+    stream.write(''.join(password))
   print(''.join(password))
 
   # for i in range(3845):
