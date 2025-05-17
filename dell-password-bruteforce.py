@@ -34,6 +34,9 @@ if __name__ == '__main__':
     print(password)
     password = next(password)
 
+  with open('output.txt', a) as stream:
+    stream.write(password)
+
   # for i in range(3845):
   #   print(password)
   #   password = next(password)
