@@ -27,10 +27,11 @@ if __name__ == '__main__':
   while len(password) < minimum_password_length:
     password.append(chars[0])
 
-  result = subprocess.run(['C:\\Progam Files (x86)\\Dell\CCTK\\X86_64\\cctk.exe', '--setuppassword=""', f'--vaultsetuppwd=""', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE])
+  cmd = ['C:\\Progam Files (x86)\\Dell\CCTK\\X86_64\\cctk.exe', '--setuppassword=""', f'--vaultsetuppwd=""'], 
+  result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   
   while len(password) < maximum_password_length or result.returncode == 0:
-    result = subprocess.run(['C:\\Progam Files (x86)\\Dell\CCTK\\X86_64\\cctk.exe', '--setuppassword=""', f'--vaultsetuppwd=""', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE])
+    result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     print(password)
     password = next(password)
 
